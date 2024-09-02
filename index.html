@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timbre Escolar</title>
+</head>
+<body>
+    <h1>Timbre Escolar</h1>
+    <p>La página está abierta. Reproduciendo sonido en los horarios establecidos.</p>
+    <audio id="timbre" src="timbre.wav" preload="auto"></audio>
+    <script>
+        function reproducirTimbre() {
+            var audio = document.getElementById('timbre');
+            audio.play();
+        }
+
+        // Lista de horarios en los que se debe reproducir el sonido
+        const horarios = [
+            "07:30", "08:10", "08:50", "08:55", "09:35", "10:15", "10:25",
+            "11:05", "11:45", "11:50", "12:30", "13:00", "13:40", "14:20",
+            "14:25", "15:05", "15:45", "15:55", "16:35", "17:15", "17:20",
+            "18:00", "20:00", "22:00"
+        ];
+
+        function comprobarHora() {
+            var ahora = new Date();
+            var hora = String(ahora.getHours()).padStart(2, '0');
+            var minuto = String(ahora.getMinutes()).padStart(2, '0');
+            var horaActual = `${hora}:${minuto}`;
+
+            // Verifica si la hora actual está en la lista de horarios
+            if (horarios.includes(horaActual)) {
+                reproducirTimbre();
+            }
+        }
+
+        // Ejecuta comprobarHora cada minuto
+        setInterval(comprobarHora, 60000);
+
+        // Comprueba la hora inmediatamente al cargar la página
+        comprobarHora();
+    </script>
+</body>
+</html>
