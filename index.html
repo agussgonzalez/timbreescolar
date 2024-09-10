@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timbre Escolar</title>
+
+    <head>
+        ...
+        <style>
+            @keyframes parpadeo {
+                0% {
+                    opacity: 1;
+                    color: black;
+                }
+
+                50% {
+                    opacity: 0;
+                    color: red;
+                }
+
+                100% {
+                    opacity: 1;
+                    color: black;
+                }
+            }
+
+            .animar {
+                animation: parpadeo 3s ease-in-out;
+            }
+        </style>
+    </head>
 </head>
+
 <body>
     <h1>Timbre Escolar</h1>
     <p>La página está abierta. Reproduciendo sonido en los horarios establecidos.</p>
@@ -12,7 +40,17 @@
     <script>
         const reproducirTimbre = () => {
             const audio = document.getElementById('timbre');
+            const titulo = document.querySelector('h1');
+
             audio.play();
+
+            // Añadir la clase de animación
+            titulo.classList.add('animar');
+
+            // Remover la clase después de que la animación termine
+            setTimeout(() => {
+                titulo.classList.remove('animar');
+            }, 3000);
         };
 
         // Lista de horarios en los que se debe reproducir el sonido
@@ -42,4 +80,5 @@
         comprobarHora();
     </script>
 </body>
+
 </html>
